@@ -1,0 +1,44 @@
+{
+  "servers": {
+    "socMCP": {
+      "url": "http://localhost:8000/mcp",
+      "type": "http"
+    }
+  },
+  "inputs": [
+    {
+      "name": "get_ip_details",
+      "type": "function",
+      "server": "socMCP",
+      "description": "Fetch IP address threat intelligence details from VirusTotal API",
+      "parameters": {
+        "ip": "string",
+        "vt_api_key": "string (optional)"
+      }
+    },
+    {
+      "name": "detect_bruteforce",
+      "type": "function",
+      "server": "socMCP",
+      "description": "Detect if an IP is performing brute-force attacks based on structured logs",
+      "parameters": {
+        "ip": "string",
+        "logs": "list of structured event dictionaries",
+        "vt_api_key": "string (optional)",
+        "window_seconds": "integer (optional, default 300)",
+        "fail_threshold": "integer (optional, default 10)"
+      }
+    },
+    {
+      "name": "correlate_events",
+      "type": "function",
+      "server": "socMCP",
+      "description": "Correlate structured logs to generate alerts and statistics",
+      "parameters": {
+        "logs": "list of structured event dictionaries",
+        "window_seconds": "integer (optional, default 300)",
+        "fail_threshold": "integer (optional, default 5)"
+      }
+    }
+  ]
+}
